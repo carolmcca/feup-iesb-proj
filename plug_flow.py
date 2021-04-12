@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 #ATRIBUIÇÃO DE CONSTANTES
 if True:
     #glucose 
@@ -63,9 +64,10 @@ if True:
     X = []
     X_max = []
     V = 100000 #definição do volume
-    P = [40 + i*0.1 for i in range(100)] # O produto não pode passar os 60
-    S_xil = [7 + i*0.1 for i in range(50)]    
-    S_gluc = [50 + i*0.5 for i in range(80)]
+    P = np.linspace(40,59,num=100) # O produto não pode passar os 60
+    S_gluc = np.linspace(50,90,num=80)
+    S_xil = np.linspace(7,12,num=50)    
+    
     
 def update_max_values():
                 global miu_gluc_max,miu_xil_max,miu_mist_max,MIU_mist_max,\
@@ -216,4 +218,4 @@ for Pm in P:
                 Sm_g.append(Sm_gluc)
 
 #DISPLAY DE RESULTADOS
-results(True)
+results()

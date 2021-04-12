@@ -39,17 +39,17 @@ if True:
     global  miu_gluc,miu_xil,qp_gluc,X2_gluc,X2_xil,qp_xil,P2_gluc, P2_xil,\
         S2_xil,S2_gluc,x2,x,V,S1_gluc,S1_xil
 
-    plot = True
+    plot = False
     V = 100000 #definição do volume
     
     #glucose
     F_gluc = 34119
-    S1_gluc = 139
+    S1_gluc = 140
     Fw_gluc_r = np.linspace(0.1*F_gluc,0.2*F_gluc,num=25)  
     Fr_gluc_r = np.linspace(0.35*F_gluc,0.85*F_gluc,num=100) 
     #xilose
     F_xil = 6353
-    S1_xil = 140 
+    S1_xil = 208
     Fw_xil_r  =  np.linspace(0.08*F_xil,0.2*F_xil,num=25) 
     Fr_xil_r  = np.linspace(0.35*F_xil,0.85*F_xil,num=50)
     
