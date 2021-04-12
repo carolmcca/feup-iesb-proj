@@ -85,6 +85,6 @@ def newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,
             X = Xn        
     if  e1 > 40 or e2 > 40: #se o ciclo foi parado por limite de iterações
         Xn = np.array([[0],[0],[0],[0],[0]]) #as soluções são definidas como 0
-        divergente += 1
+        divergente += 1 # conta número de estimativas iniciais que não convergiram
         
     return Xn,divergente

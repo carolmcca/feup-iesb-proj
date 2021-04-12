@@ -18,8 +18,8 @@ y1_p = []
 y2_p = []
 
 P = [40 + 0.0001*i for i in range(99000)]
-S2_gluc = 50
-S2_xil = 7
+S2_gluc = 45.55
+S2_xil = 7.0
 
 teta = S2_gluc/(S2_gluc+S2_xil)*mium_gluc*S2_gluc/(Ks_gluc+S2_gluc+S2_gluc**2/Kis_gluc)
 l = S2_xil/(S2_gluc+S2_xil)*mium_xil*S2_xil/(Ks_xil+S2_xil+S2_xil**2/Kis_xil)
@@ -31,7 +31,7 @@ for P2 in P:
     y1 = ((b_xil+1)*P2**b_xil*psi_xil-1)/(1-(b_gluc+1)*P2**b_gluc*psi_gluc)
     y1_p.append(y1)
     y2_p.append(y2)
-    if abs(y1-y2)<=0.0035:
+    if abs(y1-y2)<=0.009:
             root = P2
     
           
@@ -39,6 +39,7 @@ plt.plot(P, y1_p, 'r')
 plt.plot(P, y2_p, 'b')
 plt.plot(root, y2,'o', color = 'k', label = 'P_max = ' + str(round(root,2)))
 plt.legend()
+plt.title('Quimiostato substrato misto')
 plt.xlabel('P')
 plt.ylabel('Expressão')
 plt.show()
