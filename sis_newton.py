@@ -52,9 +52,7 @@ def mult(X,Y):
     return result
 
 
-def newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,
-           Fw,Fs,V,qs,Fr,F,miu,e1,e2,divergente):
-    
+def newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,Fw,Fs,V,qs,Fr,F,miu,e1,e2,divergente):
     #definição do vetor solução com as estimativas iniciais
     X = np.array([[S2_e],[P2_e],[qp_e],[X2_e],[Xw_e]])
     S2, P2, qp, X2, Xw = S2_e, P2_e, qp_e, X2_e, Xw_e
@@ -63,11 +61,11 @@ def newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,
             c += 1
             print(c)
             #definição da matriz Jacobiana
-            J = np.array([[df1dS2(P2,Pm_sub,b,S2,Kis,mium,Ks), df1dP2(P2,Pm_sub,b,S2,mium,Kis,Ks),0,0,0],
-                          [df2dS2(P2,Pm_prod,g,S2,Kp,Kip,qm,qp), df2dP2(P2,Pm_prod,g,S2,qm,qp,Kp,Kip), df2dqp(),0,0],
-                          [df3dS2(Fw,Fs),0,0, df3dX2(V,qs),0],
+            J = np.array([[df1dS2(P2,Pm_sub,b,S2,Kis,mium,Ks), df1dP2(P2,Pm_sub,b,S2,mium,Kis,Ks), 0, 0, 0],
+                          [df2dS2(P2,Pm_prod,g,S2,Kp,Kip,qm,qp), df2dP2(P2,Pm_prod,g,S2,qm,qp,Kp,Kip), df2dqp(), 0, 0],
+                          [df3dS2(Fw,Fs), 0, 0, df3dX2(V,qs), 0],
                           [0, df4dP2(Fw,Fs), df4dqp(V,X2), df4dX2(V,qp), 0],
-                          [0, 0,0, df5dX2(Fr,F), df5dXw(Fw,Fr)]])
+                          [0, 0, 0, df5dX2(Fr,F), df5dXw(Fw,Fr)]])
             #cálculo do inverso da matriz Jacobiana
             J_inv = np.linalg.inv(J)
             #cálculo do sistema para os valores de X atuais
@@ -84,11 +82,9 @@ def newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,
             e1 = np.linalg.norm(FUN)
             e2 = np.linalg.norm(H)/np.linalg.norm(Xn)
             S2, P2, qp, X2, Xw = Xn[0][0], Xn[1][0], Xn[2][0], Xn[3][0], Xn[4][0]
-            X = Xn
-            
+            X = Xn        
     if  e1 > 40 or e2 > 40: #se o ciclo foi parado por limite de iterações
         Xn = np.array([[0],[0],[0],[0],[0]]) #as soluções são definidas como 0
-        print('não convergiu')
         divergente += 1
         
     return Xn,divergente

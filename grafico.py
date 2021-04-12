@@ -37,9 +37,10 @@ for P2 in P:
           
 plt.plot(P, y1_p, 'r')
 plt.plot(P, y2_p, 'b')
-plt.plot(root, y2,'o', color = 'k', label = 'P = ' + str(round(root,2)))
+plt.plot(root, y2,'o', color = 'k', label = 'P_max = ' + str(round(root,2)))
 plt.legend()
 plt.xlabel('P')
 plt.ylabel('Expressão')
+plt.show()
 
 print('int = ', root)

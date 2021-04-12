@@ -106,7 +106,8 @@ def update_max_values():
                 S2_xil_max = S2_xil
                 X2_max = X2
                 
-def results():
+def results(plot=False):
+    if plot:
         plt.figure()  
         plt.title('Caudal mássico de saída: mistura')          
         plt.plot(x2, Pout, 'r', label='Pout')
@@ -143,29 +144,30 @@ def results():
         plt.plot(x2,S1_g,'b', label='S1')
         plt.plot(x2, Sm_g, 'k', label='Sm')
         plt.legend(loc='best')
-        print('PLUG FLOW MISTURA')
-        print('Valores fixos:')
-        print('V = ', V)
-        print('Concentrações de entrada:')
-        print('S1_xil = ', S1_xil_max)
-        print('S1_gluc = ', S1_gluc_max)
-        print('Concentrações médias no reator:')
-        print('Xm = ', Xm_max)
-        print('Sm_xil= ', Sm_xil_max)
-        print('Sm_gluc = ', Sm_gluc_max)
-        print('Pm = ', Pm_max)
-        print('Concentrações de saída')
-        print('X2 = ', X2_max)
-        print('S2_xil= ', S2_xil_max)
-        print('S2_gluc = ', S2_gluc_max)
-        print('P2 = ', P2_max)
-        print('Parâmetros cinéticos:')
-        print('miu_gluc = ', miu_gluc_max)
-        print('miu_xil = ', miu_xil_max)
-        print('miu_mist = ', miu_mist_max)
-        print('Fluxos:')
-        print('F = ', F_max)
-        print('Pout_max = ', P_out_max)                
+        plt.show()
+    print('PLUG FLOW MISTURA')
+    print('Valores fixos:')
+    print('V = ', V)
+    print('Concentrações de entrada:')
+    print('S1_xil = ', S1_xil_max)
+    print('S1_gluc = ', S1_gluc_max)
+    print('Concentrações médias no reator:')
+    print('Xm = ', Xm_max)
+    print('Sm_xil= ', Sm_xil_max)
+    print('Sm_gluc = ', Sm_gluc_max)
+    print('Pm = ', Pm_max)
+    print('Concentrações de saída')
+    print('X2 = ', X2_max)
+    print('S2_xil= ', S2_xil_max)
+    print('S2_gluc = ', S2_gluc_max)
+    print('P2 = ', P2_max)
+    print('Parâmetros cinéticos:')
+    print('miu_gluc = ', miu_gluc_max)
+    print('miu_xil = ', miu_xil_max)
+    print('miu_mist = ', miu_mist_max)
+    print('Fluxos:')
+    print('F = ', F_max)
+    print('Pout_max = ', P_out_max)                
 
 #CÁLCULO DE VALORES MÁXIMOS
 for Pm in P:
@@ -199,10 +201,9 @@ for Pm in P:
             if P_out > P_out_max and S2_gluc>=0 and S2_xil>=0:
                 #atualização dos valores maximizantes
                 update_max_values()
-
                 #atualização de lista para gráficos
                 x.append(c)
-            if c%10 == 0 and c<500000:
+            if c%10 == 0 and c<500000:# atualização de variáveis para gráficos
                 x2.append(c)
                 Pout.append(P_out)
                 QP_gluc.append(qp_gluc)
@@ -215,4 +216,4 @@ for Pm in P:
                 Sm_g.append(Sm_gluc)
 
 #DISPLAY DE RESULTADOS
-results()
+results(True)
