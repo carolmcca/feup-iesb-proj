@@ -83,6 +83,7 @@ def results():
         plt.plot(x2,X,'r', label='X')
         plt.plot(x,X_max,'b', label='X_max')
         plt.legend(loc='best')
+        plt.show()
         print('QUIMIOSTATO XILOSE')
         print('Valores fixos:')
         print('V = ', V)

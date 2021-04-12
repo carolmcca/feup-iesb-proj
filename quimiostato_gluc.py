@@ -85,6 +85,7 @@ def results():
         plt.plot(x2,X,'r', label='X2')
         plt.plot(x,X_max,'b', label='X2_max')
         plt.legend(loc='best')
+        plt.show()
         print('QUIMIOSTATO GLUCOSE')
         print('Valores fixos:')
         print('V = ', V)
