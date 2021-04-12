@@ -62,7 +62,8 @@ def update_max_values():
                 P2_max = P2
                 
                 
-def results():
+def show_results(plot=False):
+    if plot:
         plt.figure()  
         plt.title('Caudal mássico de saída de produto: xilose')          
         plt.plot(x2, Pout, 'r', label='P2*F')
@@ -84,22 +85,22 @@ def results():
         plt.plot(x,X_max,'b', label='X_max')
         plt.legend(loc='best')
         plt.show()
-        print('QUIMIOSTATO XILOSE')
-        print('Valores fixos:')
-        print('V = ', V)
-        print('Parâmetros cinéticos:')
-        print('miu_xil = ', miu_xil_max)
-        print('qs_xil = ', qs_xil_max)
-        print('qp_xil = ', qp_xil)
-        print('Concentrações de entrada:')
-        print('S1 = ', S1_xil_max)
-        print('Concentrações de saída == interior do quimiotato')
-        print('X = ', X2_max)
-        print('S2 = ', S2_xil_max)
-        print('P2 = ', P2_max)
-        print('Fluxos:')
-        print('F = ', F_max)
-        print('P2*F_max = ', P_out_max)                
+    print('\nQUIMIOSTATO XILOSE')
+    print('Valores fixos:')
+    print('V = ', V)
+    print('Parâmetros cinéticos:')
+    print('miu_xil = ', miu_xil_max)
+    print('qs_xil = ', qs_xil_max)
+    print('qp_xil = ', qp_xil)
+    print('Concentrações de entrada:')
+    print('S1 = ', S1_xil_max)
+    print('Concentrações de saída == interior do quimiotato')
+    print('X = ', X2_max)
+    print('S2 = ', S2_xil_max)
+    print('P2 = ', P2_max)
+    print('Fluxos:')
+    print('F = ', F_max)
+    print('P2*F_max = ', P_out_max,'\n')                
 
 #CÁLCULO DE VALORES MÁXIMOS
 for P2 in P:
@@ -134,4 +135,4 @@ qs_xil_max = miu_xil_max/Y_XS_xil + ms_xil
 S1_xil_max = S2_xil_max + X2_max*qs_xil_max*V/F_max
 
 #DISPLAY DE RESULTADOS
-results()
+show_results()

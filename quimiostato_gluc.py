@@ -15,8 +15,7 @@ if True:
     ms_gluc = 0.097
     Y_PS_gluc = 0.47
     Y_XS_gluc = 0.12
-
-    
+   
 #INICIALIZAÇÃO DE VARIÁVEIS
 if True:
     global miu_gluc_max,MIU_gluc_max,F_max,P_out_max,Pout_max,qp_gluc_max,\
@@ -64,7 +63,8 @@ def update_max_values():
                 P2_max = P2
                 
                 
-def results():
+def show_results(plot=False):
+    if plot:
         plt.figure()  
         plt.title('Caudal mássico de saída de produto: glucose')          
         plt.plot(x2, Pout, 'r', label='P2*F')
@@ -86,22 +86,22 @@ def results():
         plt.plot(x,X_max,'b', label='X2_max')
         plt.legend(loc='best')
         plt.show()
-        print('QUIMIOSTATO GLUCOSE')
-        print('Valores fixos:')
-        print('V = ', V)
-        print('Parâmetros cinéticos:')
-        print('miu_gluc = ', miu_gluc_max)
-        print('qs = ', qs_gluc_max)
-        print('qp = ', qp_gluc_max)
-        print('Concentrações de entrada:')
-        print('S1 = ', S1_gluc_max)
-        print('Concentrações de saída == interior do quimiotato')
-        print('X = ', X2_max)
-        print('S2 = ', S2_gluc_max)
-        print('P2 = ', P2_max)
-        print('Fluxos:')
-        print('F = ', F_max)
-        print('P2*F_max = ', P_out_max)                
+    print('\nQUIMIOSTATO GLUCOSE')
+    print('Valores fixos:')
+    print('V = ', V)
+    print('Parâmetros cinéticos:')
+    print('miu_gluc = ', miu_gluc_max)
+    print('qs = ', qs_gluc_max)
+    print('qp = ', qp_gluc_max)
+    print('Concentrações de entrada:')
+    print('S1 = ', S1_gluc_max)
+    print('Concentrações de saída == interior do quimiotato')
+    print('X = ', X2_max)
+    print('S2 = ', S2_gluc_max)
+    print('P2 = ', P2_max)
+    print('Fluxos:')
+    print('F = ', F_max)
+    print('P2*F_max = ', P_out_max,'\n')                
 
 #CÁLCULO DE VALORES MÁXIMOS
 for P2 in P: #P2 varia na gama de valores definida
@@ -136,4 +136,4 @@ qs_gluc_max = miu_gluc_max/Y_XS_gluc + ms_gluc
 S1_gluc_max = S2_gluc_max + X2_max*qs_gluc_max*V/F_max
 
 #DISPLAY DE RESULTADOS
-results()
+show_results()
