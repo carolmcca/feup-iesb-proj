@@ -39,7 +39,7 @@ if True:
     P_out_max = 0 
     
 
-    V = 100000 # definição do volume
+    V = 70385 # definição do volume
     P = np.linspace(20,94,num=600) # a concentração de produto não pode passar os 95 g/L  
     S_gluc = np.linspace(12,60,num=500)
     
@@ -101,7 +101,8 @@ def show_results(plot=False):
     print('P2 = ', P2_max)
     print('Fluxos:')
     print('F = ', F_max)
-    print('P2*F_max = ', P_out_max,'\n')                
+    print('P2*F_max = ', P_out_max)
+    print('Produtividade: ',P_out_max/100000,'\n')                
 
 #CÁLCULO DE VALORES MÁXIMOS
 for P2 in P: #P2 varia na gama de valores definida

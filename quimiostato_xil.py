@@ -39,7 +39,7 @@ if True:
     P_out_max = 0 
     c = 0
     
-    V = 100000 #definição do volume
+    V = 29615 #definição do volume
     P = np.linspace(20,59,num=400) # O produto não pode passar os 60  
     S_xil = np.linspace(7,10,num=100)
     
@@ -100,7 +100,8 @@ def show_results(plot=False):
     print('P2 = ', P2_max)
     print('Fluxos:')
     print('F = ', F_max)
-    print('P2*F_max = ', P_out_max,'\n')                
+    print('P2*F_max = ', P_out_max) 
+    print('Produtividade: ',P_out_max/100000,'\n')               
 
 #CÁLCULO DE VALORES MÁXIMOS
 for P2 in P:

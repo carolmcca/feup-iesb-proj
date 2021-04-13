@@ -147,7 +147,7 @@ def results(plot=False):
         plt.plot(x2, Sm_g, 'k', label='Sm')
         plt.legend(loc='best')
         plt.show()
-    print('PLUG FLOW MISTURA')
+    print('\nPLUG FLOW MISTURA')
     print('Valores fixos:')
     print('V = ', V)
     print('Concentrações de entrada:')
@@ -169,7 +169,8 @@ def results(plot=False):
     print('miu_mist = ', miu_mist_max)
     print('Fluxos:')
     print('F = ', F_max)
-    print('Pout_max = ', P_out_max)                
+    print('Pout_max = ', P_out_max) 
+    print('Produtividade: ',P_out_max/100000,3,'\n')               
 
 #CÁLCULO DE VALORES MÁXIMOS
 for Pm in P:

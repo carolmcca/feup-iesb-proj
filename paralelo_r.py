@@ -40,17 +40,17 @@ if True:
         S2_xil,S2_gluc,x2,x,V,S1_gluc,S1_xil
 
     plot = False
-    V = 100000 #definição do volume
+    V = 50000 #definição do volume de ambos os reatores
     
     #glucose
-    F_gluc = 34119
+    F_gluc = 17053
     S1_gluc = 140
-    Fw_gluc_r = np.linspace(0.1*F_gluc,0.2*F_gluc,num=25)  
+    Fw_gluc_r = np.linspace(0.05*F_gluc,0.4*F_gluc,num=25)  
     Fr_gluc_r = np.linspace(0.35*F_gluc,0.85*F_gluc,num=100) 
     #xilose
-    F_xil = 6353
+    F_xil = 2543
     S1_xil = 208
-    Fw_xil_r  =  np.linspace(0.08*F_xil,0.2*F_xil,num=25) 
+    Fw_xil_r  =  np.linspace(0.05*F_xil,0.2*F_xil,num=25) 
     Fr_xil_r  = np.linspace(0.35*F_xil,0.85*F_xil,num=50)
     
     
@@ -150,17 +150,21 @@ def show_results(plot=False):
     print('P2*F_max_xil = ',  round(P_out_xil_max,3))
     print('\nNão convergiram: ',divergente_xil)
     print('\nPRODUTO FINAL')
-    print('P2*F_total = ',  round(P_out_total,3),'\n')
+    print('P2*F_total = ',  round(P_out_total,3))
+    print('Produtividade: ',round(P_out_total/100000,3),'\n')
+
+    print('check_gluc = ', check_gluc)
+    print('check_xil = ', check_xil)
+    print('P_out_gluc_p = ', P_out_gluc_p)
         
 def calculo_de_valores_maximos(Fw_r,Fr_r,F,V,Y_XS,ms,S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,plot):
     # inicialização de variáveis
     if True:
         e1_e = 50
         e2_e = 50
-        P_out_max = -1
         divergente = 0
         c = 0
-        X2_max_c = 40
+        X2_max_c = 30
         Fw_max = Fw_r[0]
         Fr_max = Fr_r[0]
         Fs_max = F-Fw_r[0]
@@ -171,7 +175,7 @@ def calculo_de_valores_maximos(Fw_r,Fr_r,F,V,Y_XS,ms,S2_e,S1,P2_e,qp_e,X2_e,Xw_e
         qp_max = qp_e
         X2_max = X2_e
         Xw_max = Xw_e
-        P_out_max = F*P2_e
+        P_out_max = -1
         P_out_p = []
         P_out_max_p = []
         X2_p = []
@@ -186,6 +190,7 @@ def calculo_de_valores_maximos(Fw_r,Fr_r,F,V,Y_XS,ms,S2_e,S1,P2_e,qp_e,X2_e,Xw_e
         x_max = []
         Fr_p = []
         x_Fw_p = []
+        check = 0
     #CÁLCULO DE VALORES MÁXIMOS
     for Fw in Fw_r: # Fw varia na gama de valores definida
         x_Fw_p.append(c)
@@ -198,16 +203,16 @@ def calculo_de_valores_maximos(Fw_r,Fr_r,F,V,Y_XS,ms,S2_e,S1,P2_e,qp_e,X2_e,Xw_e
             qs = miu / Y_XS + ms
             Xn, divergente = newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,Fw,Fs,V,qs,Fr,F,miu,
                                     e1_e,e2_e,divergente)
-            # atualização de variáveis
+            # atualização de variáveis S2, P2, qp, X2, Xw e P_out
             if True:
                 S2 = Xn[0][0]
                 P2 = Xn[1][0]
                 qp = Xn[2][0]
                 X2 = Xn[3][0]
                 Xw = Xn[4][0]
-                P_out = F*P2
+                P_out = Fs*P2
                 # atualização de variáveis para gráficos
-                if plot:
+                if True:
                     x.append(c)
                     P_out_p.append(P_out)
                     X2_p.append(X2)
@@ -219,6 +224,7 @@ def calculo_de_valores_maximos(Fw_r,Fr_r,F,V,Y_XS,ms,S2_e,S1,P2_e,qp_e,X2_e,Xw_e
                     Fr_p.append(Fr)
             if P_out > P_out_max and Fr>=0 and S2>=0 and Fs>=0 and X2<X2_max_c and X2>0:
                 # atualização dos valores maximizantes
+                check += 1
                 Fw_max = Fw
                 Fr_max = Fr
                 Fs_max = Fs
@@ -236,17 +242,17 @@ def calculo_de_valores_maximos(Fw_r,Fr_r,F,V,Y_XS,ms,S2_e,S1,P2_e,qp_e,X2_e,Xw_e
                     x_max.append(c)
     
     return  Fr_p,x_Fw_p,x,x_max,P_out_max_p,P_out_p,X2_p,Xw_p,S2_p,qp_p,miu_p,qs_p,Fw_max,Xw_max,Fs_max,Fr_max,X2_max,P_out_max,S2_max,\
-            P2_max,qp_max,miu_max,qs_max,divergente
+            P2_max,qp_max,miu_max,qs_max,divergente,check
 
             
 Fr_gluc_p,x_Fw_gluc_p,x_gluc,x_gluc_max,P_out_gluc_max_p,P_out_gluc_p,X2_gluc_p,Xw_gluc_p,S2_gluc_p,qp_gluc_p,miu_gluc_p,qs_gluc_p,\
 Fw_gluc_max,Xw_gluc_max,Fs_gluc_max,Fr_gluc_max,X2_gluc_max,P_out_gluc_max,S2_gluc_max,P2_gluc_max,qp_gluc_max,miu_gluc_max,qs_gluc_max,\
-divergente_gluc = calculo_de_valores_maximos(
+divergente_gluc,check_gluc = calculo_de_valores_maximos(
                             Fw_gluc_r,Fr_gluc_r,F_gluc,V,Y_XS_gluc,ms_gluc,S2_gluc_e,S1_gluc,P2_gluc_e,qp_gluc_e,X2_gluc_e,
                             Xw_gluc_e,mium_gluc,Kis_gluc,Ks_gluc,b_gluc,g_gluc,Kp_gluc,Kip_gluc,Pm_sub_gluc,Pm_prod_gluc,qpm_gluc,plot)
                             
 Fr_xil_p,x_Fw_xil_p,x_xil,x_xil_max,P_out_xil_max_p,P_out_xil_p,X2_xil_p,Xw_xil_p,S2_xil_p,qp_xil_p,miu_xil_p,qs_xil_p,Fw_xil_max,\
-Xw_xil_max,Fs_xil_max,Fr_xil_max,X2_xil_max,P_out_xil_max,S2_xil_max,P2_xil_max,qp_xil_max,miu_xil_max, qs_xil_max,divergente_xil = \
+Xw_xil_max,Fs_xil_max,Fr_xil_max,X2_xil_max,P_out_xil_max,S2_xil_max,P2_xil_max,qp_xil_max,miu_xil_max, qs_xil_max,divergente_xil, check_xil= \
 calculo_de_valores_maximos(
                             Fw_xil_r,Fr_xil_r,F_xil,V,Y_XS_xil,ms_xil,S2_xil_e,S1_xil,P2_xil_e,qp_xil_e,X2_xil_e,Xw_xil_e,
                             mium_xil,Kis_xil,Ks_xil,b_xil,g_xil,Kp_xil,Kip_xil,Pm_sub_xil,Pm_prod_xil,qpm_xil,plot)

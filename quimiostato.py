@@ -125,7 +125,7 @@ def results(plot=False):
         plt.plot(x,X_max,'b', label='X_max')
         plt.legend(loc='best')
         plt.show()
-    print('QUIMIOSTATO MISTURA')
+    print('\nQUIMIOSTATO MISTURA')
     print('Valores fixos:')
     print('V = ', V)
     print('Parâmetros cinéticos:')
@@ -147,7 +147,8 @@ def results(plot=False):
     print('P2 = ', P2_max)
     print('Fluxos:')
     print('F = ', F_max)
-    print('Pout_max = ', P_out_max)                
+    print('Pout_max = ', P_out_max)
+    print('Produtividade: ',P_out_max/100000,'\n')                
 
 
 
@@ -193,4 +194,4 @@ S1_xil_max = S2_xil_max + X2_max*qs_xil_max*V/F_max
 S1_gluc_max = S2_gluc_max + X2_max*qs_gluc_max*V/F_max
 
 #DISPLAY DE RESULTADOS
-results(True)
+results()
