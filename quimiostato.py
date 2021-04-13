@@ -61,7 +61,7 @@ if True:
     P_out_max = 0 
     
     V = 100000 #definição do volume
-    P = np.linspace(40, 59, num=100) #a concentração de produto não pode passar os 60 g/L
+    P = np.linspace(45, 55, num=500) #a concentração de produto não pode passar os 60 g/L
     S_xil = np.linspace(7, 10, num=50)   
     S_gluc = np.linspace(12, 60, num=300)
     

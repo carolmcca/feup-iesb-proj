@@ -39,7 +39,7 @@ if True:
     P_out_max = 0 
     
 
-    V = 70385 # definição do volume
+    V = 79307.74506 # definição do volume
     P = np.linspace(20,94,num=600) # a concentração de produto não pode passar os 95 g/L  
     S_gluc = np.linspace(12,60,num=500)
     

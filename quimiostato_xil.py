@@ -39,7 +39,7 @@ if True:
     P_out_max = 0 
     c = 0
     
-    V = 29615 #definição do volume
+    V = 20692.25494 #definição do volume
     P = np.linspace(20,59,num=400) # O produto não pode passar os 60  
     S_xil = np.linspace(7,10,num=100)
     
