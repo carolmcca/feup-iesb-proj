@@ -92,7 +92,7 @@ def update_max_values():
                 X_max.append(X2_max)
                 P2_max = P2
                    
-def results(plot=False):
+def results(plot=True):
     if plot:
         plt.figure()  
         plt.title('Caudal mássico de saída de produto: mistura')          
