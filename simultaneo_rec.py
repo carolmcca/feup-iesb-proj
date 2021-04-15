@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 from sis_newton import newton
 import numpy as np
 
+#Este programa demora algum tempo a correr; os números que surgem no ecrã indicam que está a funcionar
+
 def show_results_head():
     print('\nREATORES ABERTOS COM JUNÇÃO DE CAUDAL FINAL (com reciclagem e purga)')
 

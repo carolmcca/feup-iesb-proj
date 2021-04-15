@@ -30,7 +30,7 @@ if True:
     Y_PS_xil = 0.4
     Y_XS_xil = 0.16
 
-#VALORES OBTIDOS PELO PROGRAMA simultaneos_rec.py
+#VALORES OBTIDOS PELO PROGRAMA simultaneo_rec.py
 # GLUCOSE
 V_gluc = 79307.74506
 # Parâmetros cinéticos:
@@ -98,8 +98,8 @@ aux_xil = (F_xil+Fr_xil)/(Fw_xil+Fr_xil)
 f7_xil = -miu_xil+Fw_xil/V_xil*aux_xil
 f8_xil = -qs_xil + miu_xil / Y_XS_xil + ms_xil
 
-print('Se o método estiver correto, todas as funções devem tomar valores inferiores a 10')
-print('GLUCOSE: ')
+print('\nSe o método estiver correto, todas as funções devem tomar valores em módulo inferiores a 10')
+print('\nGLUCOSE: ')
 print('f1: ',f1_gluc)
 print('f2: ',f2_gluc)
 print('f3: ',f3_gluc)
@@ -108,7 +108,7 @@ print('f5: ',f5_gluc)
 print('f6: ',f6_gluc)
 print('f7: ',f7_gluc)
 print('f8: ',f8_gluc)
-print('XILOSE: ')
+print('\nXILOSE: ')
 print('f1: ',f1_xil)
 print('f2: ',f2_xil)
 print('f3: ',f3_xil)

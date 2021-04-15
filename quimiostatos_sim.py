@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
-   
+
+ #Este programa pode demorar algum tempo a correr; os números que surgem no ecrã indicam que está a funcionar
+
 def update_max_values(miu,MIU_max,qp,QP_max,F,P_out,Pout_max,S2,X2,X_max,P2):
     #ATUALIZAÇÃO DOS VALORES MÁXIMOS
     #atualização dos parâmetros cinéticos
@@ -69,7 +71,6 @@ def show_results(gluc_or_xil, args, plot=True):
         plt.plot(x,X,'r', label='X2')
         plt.plot(x_max,X_max,'b', label='X2_max')
         plt.legend(loc='best')
-        plt.show(block=False)
        
 def show_results_final_prod(P_out_max):
     print("\nPRODUTO TOTAL:")
@@ -97,6 +98,7 @@ def calculate_max_values(args):
     for P2 in P: #P2 varia na gama de valores definida
         for S2 in S: #S2 varia na gama de valores definida
                 c += 1
+                print(c)
                 #cálculo do miu
                 miu = mium*S2/(Ks+S2+(S2**2/Kis))*(1-(P2/Pm_sub)**b)
                 #cálculo do caudal de saída de produto
@@ -198,6 +200,7 @@ def main():
     show_results(True, out_gluc)
     show_results(False, out_xil,False)
     show_results_final_prod(P_out_total)
+    plt.show()
 
 if __name__ == "__main__":    
     main()

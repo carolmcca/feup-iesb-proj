@@ -62,7 +62,7 @@ def results(V, args):
     print('Pout_max = ', P_out_max) 
     print('Produtividade = ', P_out_max/100000,'\n')               
 
-def main():
+def main():    
     #ATRIBUIÇÃO DE CONSTANTES
     if True:
         #glucose 
