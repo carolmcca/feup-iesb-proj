@@ -11,6 +11,7 @@ ms_gluc = 0.097
 mium_xil = 0.19
 Ks_xil = 3.4
 Kis_xil = 18
+Pm_sub_xil = 59
 b_xil = 1
 ms_xil = 0.067
 
@@ -23,8 +24,8 @@ S2_xil = 7
 
 teta = S2_gluc/(S2_gluc+S2_xil)*mium_gluc*S2_gluc/(Ks_gluc+S2_gluc+S2_gluc**2/Kis_gluc)
 l = S2_xil/(S2_gluc+S2_xil)*mium_xil*S2_xil/(Ks_xil+S2_xil+S2_xil**2/Kis_xil)
-psi_gluc = (1/P2_sub_gluc)**b_gluc
-psi_xil = (1/P2_sub_xil)**b_xil
+psi_gluc = (1/Pm_sub_gluc)**b_gluc
+psi_xil = (1/Pm_sub_xil)**b_xil
 y2 = teta/l
 
 for P2 in P:
@@ -35,6 +36,7 @@ for P2 in P:
             root = P2
     
           
+print('Interseção = ', round(root,2))
 plt.plot(P, y1_p, 'r')
 plt.plot(P, y2_p, 'b')
 plt.plot(root, y2,'o', color = 'k', label = 'P_max = ' + str(round(root,2)))
@@ -43,4 +45,3 @@ plt.title('Valor máximo de produto : Quimiostato misto')
 plt.xlabel('P')
 plt.ylabel('Expressão')
 plt.show()
-print('Interseção = ', round(root,2))

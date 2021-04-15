@@ -31,6 +31,23 @@ def show_results(gluc_or_xil, args, plot=True):
 
     (miu_max,MIU_max,F_max,P_out_max,Pout_max,qp_max,QP_max,X2_max,X_max,P2_max,S2_max,x,x_max,Pout,QP,MIU,X,qs_max,S1_max,V) = args
 
+    print('\nQUIMIOSTATO '+name_caps)
+    print('Valores fixos:')
+    print('V = ', V)
+    print('Parâmetros cinéticos:')
+    print('miu = ', miu_max)
+    print('qs = ', qs_max)
+    print('qp = ', qp_max)
+    print('Concentrações de entrada:')
+    print('S1 = ', S1_max)
+    print('Concentrações de saída == interior do quimiotato')
+    print('X = ', X2_max)
+    print('S2 = ', S2_max)
+    print('P2 = ', P2_max)
+    print('Fluxos:')
+    print('F = ', F_max)
+    print('P2*F_max = ', P_out_max)
+
     if plot:
         plt.figure()
         plt.title('Caudal mássico de saída de produto: ' +name)          
@@ -52,25 +69,8 @@ def show_results(gluc_or_xil, args, plot=True):
         plt.plot(x,X,'r', label='X2')
         plt.plot(x_max,X_max,'b', label='X2_max')
         plt.legend(loc='best')
-        plt.show()
-    
-    print('\nQUIMIOSTATO '+name_caps)
-    print('Valores fixos:')
-    print('V = ', V)
-    print('Parâmetros cinéticos:')
-    print('miu = ', miu_max)
-    print('qs = ', qs_max)
-    print('qp = ', qp_max)
-    print('Concentrações de entrada:')
-    print('S1 = ', S1_max)
-    print('Concentrações de saída == interior do quimiotato')
-    print('X = ', X2_max)
-    print('S2 = ', S2_max)
-    print('P2 = ', P2_max)
-    print('Fluxos:')
-    print('F = ', F_max)
-    print('P2*F_max = ', P_out_max)
-    
+        plt.show(block=False)
+       
 def show_results_final_prod(P_out_max):
     print("\nPRODUTO TOTAL:")
     print('P2*F_max = ', P_out_max)
@@ -196,7 +196,7 @@ def main():
 
     #DISPLAY DE RESULTADOS
     show_results(True, out_gluc)
-    show_results(False, out_xil)
+    show_results(False, out_xil,False)
     show_results_final_prod(P_out_total)
 
 if __name__ == "__main__":    

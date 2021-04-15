@@ -33,7 +33,32 @@ def update_max_values(args):
 def results(args, args2, plot=True):
     (miu_gluc_max,miu_xil_max,miu_mist_max,MIU_mist_max,qp_gluc_max,QP_gluc_max,qp_xil_max,QP_xil_max,qp_mist_max,QP_mist_max,F_max,P_out_max,Pout_max,S2_xil_max,S2_gluc_max,X2_max,X_max,P2_max) = args
     (V,qs_gluc_max,qs_xil_max,S1_gluc_max,S1_xil_max,x2,Pout,x,QP_gluc,QP_xil,QP_mist,MIU_mist,X) = args2
-    
+
+    print('\nQUIMIOSTATO MISTURA')
+    print('Valores fixos:')
+    print('V = ', V)
+    print('Parâmetros cinéticos:')
+    print('miu_gluc = ', miu_gluc_max)
+    print('miu_xil  = ', miu_xil_max)
+    print('miu_mist = ', miu_mist_max)
+    print('qs_gluc = ', qs_gluc_max)
+    print('qs_xil  = ', qs_xil_max)
+    print('qp_gluc = ', qp_gluc_max)
+    print('qp_xil  = ', qp_xil_max)
+    print('qp_mist = ', qp_mist_max)
+    print('Concentrações de entrada:')
+    print('S1_gluc = ', S1_gluc_max)
+    print('S1_xil = ', S1_xil_max)
+    print('Concentrações de saída == interior do quimiostato')
+    print('X = ', X2_max)
+    print('S2_gluc = ', S2_gluc_max)
+    print('S2_xil  = ', S2_xil_max)
+    print('P2 = ', P2_max)
+    print('Fluxos:')
+    print('F = ', F_max)
+    print('Pout_max = ', P_out_max)
+    print('Produtividade = ',P_out_max/100000,'\n') 
+                   
     if plot:
         plt.figure()  
         plt.title('Caudal mássico de saída de produto: mistura')          
@@ -66,31 +91,6 @@ def results(args, args2, plot=True):
         plt.plot(x,X_max,'b', label='X_max')
         plt.legend(loc='best')
         plt.show()
-    print('\nQUIMIOSTATO MISTURA')
-    print('Valores fixos:')
-    print('V = ', V)
-    print('Parâmetros cinéticos:')
-    print('miu_gluc = ', miu_gluc_max)
-    print('miu_xil  = ', miu_xil_max)
-    print('miu_mist = ', miu_mist_max)
-    print('qs_gluc = ', qs_gluc_max)
-    print('qs_xil  = ', qs_xil_max)
-    print('qp_gluc = ', qp_gluc_max)
-    print('qp_xil  = ', qp_xil_max)
-    print('qp_mist = ', qp_mist_max)
-    print('Concentrações de entrada:')
-    print('S1_gluc = ', S1_gluc_max)
-    print('S1_xil = ', S1_xil_max)
-    print('Concentrações de saída == interior do quimiostato')
-    print('X = ', X2_max)
-    print('S2_gluc = ', S2_gluc_max)
-    print('S2_xil  = ', S2_xil_max)
-    print('P2 = ', P2_max)
-    print('Fluxos:')
-    print('F = ', F_max)
-    print('Pout_max = ', P_out_max)
-    print('Produtividade = ',P_out_max/100000,'\n')                
-
 
 def main():
     # ATRIBUIÇÃO DE CONSTANTES
@@ -185,7 +185,8 @@ def main():
                     # atualização dos valores maximizantes
                     out_max = update_max_values(args)
 
-                    (miu_gluc_max,miu_xil_max,miu_mist_max,MIU_mist_max,qp_gluc_max,QP_gluc_max,qp_xil_max,QP_xil_max,qp_mist_max,QP_mist_max,F_max,P_out_max,Pout_max,S2_xil_max,S2_gluc_max,X2_max,X_max,P2_max) = out_max
+                    (miu_gluc_max,miu_xil_max,miu_mist_max,MIU_mist_max,qp_gluc_max,QP_gluc_max,qp_xil_max,QP_xil_max,qp_mist_max,QP_mist_max,F_max,P_out_max,Pout_max,
+                    S2_xil_max,S2_gluc_max,X2_max,X_max,P2_max) = out_max
                     
                     # atualização de lista para gráficos
                     x.append(c)

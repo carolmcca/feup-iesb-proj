@@ -21,30 +21,30 @@ def show_results(gluc_or_xil, args, plot=False):
     print('\n'+name_caps)
     print('Volume do reator:',V)
     print('Parâmetros cinéticos:')
-    print('qs_' +abv+' = ', round(qs_max,3))
-    print('miu_'+abv+' = ',round(miu_max,3))
-    print('qp_' +abv+' = ',  round(qp_max,3))
+    print('qs_' +abv+' = ', qs_max)
+    print('miu_'+abv+' = ',miu_max)
+    print('qp_' +abv+' = ',  qp_max)
     print('Entrada: ')
-    print('S1_' +abv+' = ',  round(S1))
-    print('F_'  +abv+' = ',  round(F))
+    print('S1_' +abv+' = ',  S1)
+    print('F_'  +abv+' = ',  F)
     print('Interior do reator:')
-    print('S2_' +abv+' = ',  round(S2_max,3))
-    print('X2_' +abv+' = ',  round(X2_max,3))
-    print('P2_' +abv+' = ',  round(P2_max,3))
+    print('S2_' +abv+' = ',  S2_max)
+    print('X2_' +abv+' = ',  X2_max)
+    print('P2_' +abv+' = ',  P2_max)
     print('Purga: ')
-    print('Fw_' +abv+' = ',  round(Fw_max,3), '(',  round(Fw_perc,3), '%)')
-    print('Xw_' +abv+' = ',  round(Xw_max,3))
+    print('Fw_' +abv+' = ',  Fw_max, '(',  round(Fw_perc,1), '%)')
+    print('Xw_' +abv+' = ',  Xw_max)
     print('Reciclagem: ')
-    print('Fr_' +abv+' = ',  round(Fr_max,3), '(',  round(Fr_perc,3), '%)')
+    print('Fr_' +abv+' = ',  Fr_max, '(',  round(Fr_perc,1), '%)')
     print('Saída: ')
-    print('Fs_' +abv+' = ',  round(Fs_max,3), '(',  round(Fs_perc,3), '%)')
-    print('P2*F_max_'+abv+' = ',  round(P_out_max,3))
+    print('Fs_' +abv+' = ',  Fs_max, '(',  round(Fs_perc,1), '%)')
+    print('P2*F_max_'+abv+' = ',  P_out_max)
     print('\nNão convergiram: ', divergente)
     
 def show_results_final_prod(P_out_total):
     print('\nPRODUTO FINAL')
-    print('P2*F_total = ',  round(P_out_total,3))
-    print('Produtividade: ',round(P_out_total/100000,3),'\n')
+    print('P2*F_total = ',  P_out_total)
+    print('Produtividade = ', P_out_total/100000,'\n')
       
 def calculo_de_valores_maximos(args):
     Fw_r,Fr_r,F,V,Y_XS,ms,S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm = args
@@ -56,28 +56,28 @@ def calculo_de_valores_maximos(args):
         divergente = 0
         c = 0
         X2_max_c = 30
-        Fw_max = Fw_r[0]
-        Fr_max = Fr_r[0]
-        Fs_max = F-Fw_r[0]
-        miu_max = Fw_r[0]/V*((F+Fr_r[0])/(Fw_r[0]+Fr_r[0]))
-        qs_max = miu_max / Y_XS + ms
-        S2_max = S2_e
-        P2_max = P2_e
-        qp_max = qp_e
-        X2_max = X2_e
-        Xw_max = Xw_e
+        Fw_max = 'n'
+        Fr_max = 'n'
+        Fs_max = 'n'
+        miu_max = 'n'
+        qs_max = 'n'
+        S2_max = 'n'
+        P2_max = 'n'
+        qp_max = 'n'
+        X2_max = 'n'
+        Xw_max = 'n'
         P_out_max = -1
     #CÁLCULO DE VALORES MÁXIMOS
     for Fw in Fw_r: # Fw varia na gama de valores definida
         for Fr in Fr_r: # Fr varia na gama de valores definida
             c += 1
+            print(c)
             Fs = F-Fw
             # aux = Xw / X2
             aux = (F+Fr)/(Fw+Fr)
             miu = Fw/V*aux
             qs = miu / Y_XS + ms
-            Xn, divergente = newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,Fw,Fs,V,qs,Fr,F,miu,
-                                    e1_e,e2_e,divergente)
+            Xn, divergente = newton(S2_e,S1,P2_e,qp_e,X2_e,Xw_e,mium,Kis,Ks,b,g,Kp,Kip,Pm_sub,Pm_prod,qm,Fw,Fs,V,qs,Fr,F,miu,e1_e,e2_e,divergente)
             # atualização de variáveis S2, P2, qp, X2, Xw e P_out
             if True:
                 S2 = Xn[0][0]
@@ -100,6 +100,7 @@ def calculo_de_valores_maximos(args):
                 Xw_max = Xw
                 P_out_max = P_out
                 X2_max = X2
+                c_max = c
     
     return  Fw_max,Xw_max,Fs_max,Fr_max,X2_max,P_out_max,S2_max,P2_max,qp_max,miu_max,qs_max,divergente
 
@@ -140,13 +141,13 @@ def main():
     if True:
         #glucose
         V_gluc = 79307.74506
-        F_gluc = 17053
+        F_gluc = 27048
         S1_gluc = 140
-        Fw_gluc_r = np.linspace(0.05*F_gluc,0.3*F_gluc,num=25)  
+        Fw_gluc_r = np.linspace(0.05*F_gluc,0.3*F_gluc,num=100)  
         Fr_gluc_r = np.linspace(0.35*F_gluc,0.85*F_gluc,num=100) 
         #xilose
         V_xil = 20692.25494
-        F_xil = 2543
+        F_xil = 1052
         S1_xil = 208
         Fw_xil_r  =  np.linspace(0.05*F_xil,0.4*F_xil,num=25) 
         Fr_xil_r  = np.linspace(0.35*F_xil,0.85*F_xil,num=50)
@@ -165,6 +166,7 @@ def main():
         qp_xil_e = 0.0015
         X2_xil_e = 23
         Xw_xil_e = 2.5*X2_xil_e
+    
     
     args_gluc = (Fw_gluc_r,Fr_gluc_r,F_gluc,V_gluc,Y_XS_gluc,ms_gluc,S2_gluc_e,S1_gluc,P2_gluc_e,qp_gluc_e,X2_gluc_e,Xw_gluc_e,mium_gluc,Kis_gluc,Ks_gluc,b_gluc,g_gluc,Kp_gluc,Kip_gluc,Pm_sub_gluc,Pm_prod_gluc,qpm_gluc)
     args_xil  = (Fw_xil_r,Fr_xil_r,F_xil,V_xil,Y_XS_xil,ms_xil,S2_xil_e,S1_xil,P2_xil_e,qp_xil_e,X2_xil_e,Xw_xil_e,mium_xil,Kis_xil,Ks_xil,b_xil,g_xil,Kp_xil,Kip_xil,Pm_sub_xil,Pm_prod_xil,qpm_xil)

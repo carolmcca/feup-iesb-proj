@@ -35,7 +35,8 @@ for Pm in P:
     if abs(y1-y2)<=0.005:
             root = Pm
     
-          
+
+print('Interseção = ', round(root,2))          
 plt.plot(P, y1_p, 'r')
 plt.plot(P, y2_p, 'b')
 plt.plot(root, y2,'o', color = 'k', label = 'P_max = ' + str(round(root,2)))
@@ -45,4 +46,3 @@ plt.xlabel('P')
 plt.ylabel('Expressão')
 plt.show()
 
-print('Interseção = ', round(root,2))
