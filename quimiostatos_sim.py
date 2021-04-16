@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
  #Este programa pode demorar algum tempo a correr; os números que surgem no ecrã indicam que está a funcionar
+def show_results_head():
+    print('\nREATORES ABERTOS COM JUNÇÃO DE CAUDAL FINAL')
 
 def update_max_values(miu,MIU_max,qp,QP_max,F,P_out,Pout_max,S2,X2,X_max,P2):
     #ATUALIZAÇÃO DOS VALORES MÁXIMOS
@@ -197,6 +199,7 @@ def main():
     
 
     #DISPLAY DE RESULTADOS
+    show_results_head()
     show_results(True, out_gluc)
     show_results(False, out_xil,False)
     show_results_final_prod(P_out_total)
